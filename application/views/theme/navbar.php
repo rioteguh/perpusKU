@@ -149,7 +149,7 @@
                         </ul>
                     </li>
                     <!-- #END# Notifications -->
-                    <li class="pull-right" title="Logout"><a href="javascript:void(0);"><i class="material-icons">input</i></a></li>
+                    <li class="pull-right" title="Logout"><a href="<?=base_url();?>logout"><i class="material-icons">input</i></a></li>
                 </ul>
             </div>
         </div>

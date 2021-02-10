@@ -22,6 +22,12 @@
     <!-- Animation Css -->
     <link href="<?=base_url('dist/plugins/animate-css/animate.css');?>" rel="stylesheet" />
 
+    <!-- Bootstrap Select Css -->
+    <link href="<?=base_url('dist/plugins/bootstrap-select/css/bootstrap-select.css');?>" rel="stylesheet" />
+
+    <!-- JQuery DataTable Css -->
+    <link href="<?=base_url('dist/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css');?>" rel="stylesheet">
+
     <!-- Custom Css -->
     <link href="<?=base_url('dist/css/style.css');?>" rel="stylesheet">
 

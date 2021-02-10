@@ -1,9 +1,10 @@
 <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>Dashboard</h2>
+                <h2>Home</h2>
             </div>
             <!-- Body Copy -->
+            <?php if ($this->session->userdata('MM_Status') == 'admin') :?>
             <div class="row clearfix">
                 <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-pink hover-expand-effect">
@@ -12,7 +13,7 @@
                         </div>
                         <div class="content">
                             <div class="text">VISITOR ONLINE</div>
-                            <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">125</div>
+                            <div class="number count-to" data-speed="15" data-fresh-interval="20"><span id="visit_on"></span></div>
                         </div>
                     </div>
                 </div>
@@ -23,7 +24,7 @@
                         </div>
                         <div class="content">
                             <div class="text">VISITOR OFFLINE</div>
-                            <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-speed="1000" data-fresh-interval="20"><span id="visit_off"></span></div>
                         </div>
                     </div>
                 </div>
@@ -34,12 +35,13 @@
                         </div>
                         <div class="content">
                             <div class="text">TOTAL BUKU</div>
-                            <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-speed="1000" data-fresh-interval="20"><span id="tot_buku"></span></div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- #END# Widgets -->
+            <?php endif;?>
 
             <div class="row clearfix">
                 <!-- Line Chart -->
