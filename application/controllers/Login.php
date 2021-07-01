@@ -69,7 +69,7 @@ class Login extends CI_Controller {
 			);
 	
 			$this->session->set_userdata($data_session);
-			redirect("home?status=success");
+			redirect("home?id=".$data_session['MM_Username']."&status=".$data_session['MM_Status']);
 		}else{
 			redirect("login?err=user");
 		}

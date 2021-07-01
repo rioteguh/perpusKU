@@ -76,7 +76,7 @@ class User_api extends CI_Controller {
             'add_date' => date('Y-m-d H:i:s'),
             'update_date' => date('Y-m-d H:i:s'),
         );
-        $insert = $this->User_model->add_user($data);
+        $insert = $this->User_model->add_user($data,'tbl_akun');
         if ($this->input->post('status') == 'visitor') {
             $insert2= $this->Buku_model->add_buku($data2,'tbl_siswa');
         }
@@ -85,7 +85,7 @@ class User_api extends CI_Controller {
 
     public function delete_user($id)
     {
-        $this->User_model->delete_user($id);
+        $this->User_model->delete_user($id,'tbl_akun');
         echo json_encode(array("status" => TRUE));
     }
     

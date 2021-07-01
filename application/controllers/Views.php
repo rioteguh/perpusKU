@@ -9,7 +9,7 @@ class Views extends CI_Controller {
 		if($this->session->userdata('MM_Condition') != true){
 			redirect(base_url("login"));
 		}
-		// $this->load->model('Dash_model');
+		$this->load->model('User_model');
 
 	}
 
@@ -18,6 +18,53 @@ class Views extends CI_Controller {
 		$data['judul'] = 'Home | PerpusKU';
 		$data['a'] = array('active',null,null,null,null,null);
 		$data['b'] = array(null,null,null,null);
+
+		$id = $this->input->get('id');
+		$status = $this->input->get('status');
+		if (!empty($id) && !empty($status)) {
+			if ($status == 'visitor') {
+				$where = array(
+					'id_user' => $id,
+					'waktu' => date('Y-m-d'),
+					'activity' => 'visit online',
+				);
+				$cek = $this->User_model->cek($where,'tbl_activity');
+				if ($cek == null) {
+					$dt = array(
+						'id_user' => $id,
+						'activity' => 'visit online',
+						'ket' => 'Login PerpusKU',
+						'waktu' => date('Y-m-d'),
+						'add_date' => date('Y-m-d H:i:s'),
+						'update_date' => date('Y-m-d H:i:s'),
+						'point' => 1,
+						'status' => $this->session->userdata('MM_Status'),
+					);
+					$this->User_model->add_user($dt,'tbl_activity');
+				}
+			} else {
+				$where = array(
+					'id_user' => $id,
+					'waktu' => date('Y-m-d'),
+					'activity' => 'login admin',
+				);
+				$cek = $this->User_model->cek($where,'tbl_activity');
+				if ($cek == null) {
+					$dt = array(
+						'id_user' => $id,
+						'activity' => 'login admin',
+						'ket' => 'Login PerpusKU',
+						'waktu' => date('Y-m-d'),
+						'add_date' => date('Y-m-d H:i:s'),
+						'update_date' => date('Y-m-d H:i:s'),
+						'point' => 0,
+						'status' => $this->session->userdata('MM_Status'),
+					);
+					$this->User_model->add_user($dt,'tbl_activity');
+				}
+			}
+		}
+
 
 		$this->load->view('theme/head',$data);
 		$this->load->view('theme/navbar');
@@ -101,6 +148,21 @@ class Views extends CI_Controller {
 		$this->load->view('peminjaman/index');
 		$this->load->view('theme/js');
 		$this->load->view('peminjaman/index_js');
+		$this->load->view('theme/foot');
+	}
+
+	public function aktivitas()
+	{
+		$data['judul'] = 'Aktivitas | PerpusKU';
+		$data['a'] = array(null,null,null,null,'active',null);
+		$data['b'] = array(null,null,null,'active');
+
+		$this->load->view('theme/head',$data);
+		$this->load->view('theme/navbar');
+		$this->load->view('theme/sidebar');
+		$this->load->view('history/aktivitas/index');
+		$this->load->view('theme/js');
+		$this->load->view('history/aktivitas/index_js');
 		$this->load->view('theme/foot');
 	}
 	

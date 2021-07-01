@@ -75,16 +75,16 @@ class User_model extends CI_Model {
         return $this->db->count_all_results();
     }
 
-    public function add_user($data)
+    public function add_user($data,$tbl)
     {
-        $this->db->insert($this->table, $data);
+        $this->db->insert($tbl, $data);
         return $this->db->insert_id();
     }
 
-    public function delete_user($id)
+    public function delete_user($id,$tbl)
     {
         $this->db->where('id', $id);
-        $this->db->delete($this->table);
+        $this->db->delete($tbl);
     }
 
 }

@@ -10,6 +10,7 @@ class Dash extends CI_Controller {
 			redirect(base_url("login"));
 		}
         $this->load->model('Buku_model');
+        $this->load->model('Aktivitas_model');
     }
 
 	public function index()
@@ -30,8 +31,18 @@ class Dash extends CI_Controller {
 	{
 		$data = array(
 			'tot_buku'=>$this->Buku_model->count_all_buku(),
-			'visit_on'=>0,
-			'visit_off'=>0,
+			'visit_on'=>$this->Aktivitas_model->visitor_on()[0]->jmlh,
+			'visit_off'=>$this->Aktivitas_model->visitor_off()[0]->jmlh,
+			'reward' => $this->Aktivitas_model->data_reward(),
+		);
+
+		echo json_encode($data);
+	}
+
+	public function v_dash()
+	{
+		$data = array(
+			'reward' => $this->Aktivitas_model->data_reward(),
 		);
 
 		echo json_encode($data);

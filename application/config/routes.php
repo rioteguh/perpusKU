@@ -54,6 +54,7 @@ $route['users'] = 'views/users';
 $route['koleksi'] = 'views/koleksi';
 $route['form_buku'] = 'views/form_buku';
 $route['peminjaman'] = 'views/peminjaman';
+$route['aktivitas'] = 'views/aktivitas';
 $route['logout'] = 'views/logout';
 $route['bukutamu'] = 'login/bukutamu';
 $route['pencarian'] = 'login/pencarian';

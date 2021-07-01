@@ -13,7 +13,7 @@
                             </h2>
                         </div>
                         <div class="body table-responsive">
-                            <button type="button" class="btn bg-light-blue waves-effect m-r-20" onclick="add_buku()"><i class="material-icons">book</i> Pinjam Buku</button>
+                            <button type="button" class="btn bg-light-blue waves-effect m-r-20" onclick="tambah_data()"><i class="material-icons">book</i> Pinjam Buku</button>
                             <button type="button" class="btn bg-pink waves-effect m-r-20" onclick="reload_table()"><i class="material-icons">cached</i> Reload</button>
                             <hr/>
                             <table class="table table-bordered js-basic-example dataTable">
@@ -43,7 +43,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="defaultModalLabel">Tambah Buku</h4>
+                    <h4 class="modal-title" id="defaultModalLabel">Tambah Daftar Peminjam</h4>
                 </div>
                 <form autocomplete="off" enctype="multipart/form-data" method="post" action="<?=base_url();?>buku_api/tambah_buku">
                     <div class="modal-body">

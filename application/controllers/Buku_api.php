@@ -10,6 +10,7 @@ class Buku_api extends CI_Controller {
 			redirect(base_url("login"));
 		}
         $this->load->model('Buku_model');
+        $this->load->model('User_model');
     }
 
 	public function index()
@@ -24,6 +25,50 @@ class Buku_api extends CI_Controller {
     public function load_by_id($id)
     {
         $data = $this->Buku_model->load_buku_by_id($id);
+        $id_user = $this->session->userdata('MM_Username');
+        if ($this->session->userdata('MM_Status') == 'visitor') {
+            $where = array(
+                'id_user' => $id_user,
+                'waktu' => date('Y-m-d'),
+                'activity' => 'baca buku',
+                'ket' => 'Membaca Buku '.$data['judul'],
+            );
+            $cek = $this->User_model->cek($where,'tbl_activity');
+            if ($cek == null) {
+                $dt = array(
+                    'id_user' => $id_user,
+                    'activity' => 'baca buku',
+                    'ket' => 'Membaca Buku '.$data['judul'],
+                    'waktu' => date('Y-m-d'),
+                    'add_date' => date('Y-m-d H:i:s'),
+                    'update_date' => date('Y-m-d H:i:s'),
+                    'point' => 3,
+                    'status' =>$this->session->userdata('MM_Status'),
+                );
+                $this->User_model->add_user($dt,'tbl_activity');
+            }
+        }else{
+            $where = array(
+                'id_user' => $id_user,
+                'waktu' => date('Y-m-d'),
+                'activity' => 'cek buku',
+                'ket' => 'Lihat Buku '.$data['judul'],
+            );
+            $cek = $this->User_model->cek($where,'tbl_activity');
+            if ($cek == null) {
+                $dt = array(
+                    'id_user' => $id_user,
+                    'activity' => 'cek buku',
+                    'ket' => 'Lihat Buku '.$data['judul'],
+                    'waktu' => date('Y-m-d'),
+                    'add_date' => date('Y-m-d H:i:s'),
+                    'update_date' => date('Y-m-d H:i:s'),
+                    'point' => 0,
+                    'status' =>$this->session->userdata('MM_Status'),
+                );
+                $this->User_model->add_user($dt,'tbl_activity');
+            }
+        }
 		echo json_encode(array('status'=>true, 'data'=>$data));
     }
 
@@ -48,7 +93,7 @@ class Buku_api extends CI_Controller {
             $row[] = $user->id_buku;
             $row[] = $user->judul;
             $row[] = $user->thn_terbit;
-            $row[] = '<button class="btn bg-red waves-effect m-r-20" onclick="delete_user('."'".$user->id."'".')"><i class="material-icons">delete</i></button> <button class="btn bg-yellow waves-effect m-r-20"><i class="material-icons">edit</i></button>';
+            $row[] = '<button class="btn bg-red waves-effect m-r-20" onclick="delete_buku('."'".$user->id."'".')" title="Delete"><i class="material-icons">delete</i></button> <button class="btn bg-yellow waves-effect m-r-20" onclick="edit_buku('."'".$user->id."'".')" title="Edit"><i class="material-icons">edit</i></button>';
 
             $data[] = $row;
         }
@@ -139,6 +184,13 @@ class Buku_api extends CI_Controller {
         }
         // echo json_encode($data);
     }
+
+    public function delete_buku($id)
+    {
+        $this->User_model->delete_user($id,'tbl_buku');
+        echo json_encode(array("status" => TRUE));
+    }
+
 
 // =====================================================================================================================================
 

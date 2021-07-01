@@ -60,14 +60,7 @@
                         <div class="header">
                             <h2>VISITOR TERBAIK</h2>
                         </div>
-                        <div class="body">
-                            <ul class="list-group">
-                                <li class="list-group-item"><i class="material-icons">person</i> Cras justo odio</li>
-                                <li class="list-group-item"><i class="material-icons">person</i> Cras justo odio</li>
-                                <li class="list-group-item"><i class="material-icons">person</i> Cras justo odio</li>
-                                <li class="list-group-item"><i class="material-icons">person</i> Cras justo odio</li>
-                                <li class="list-group-item"><i class="material-icons">person</i> Cras justo odio</li>
-                            </ul>
+                        <div class="body" id="reward">
                         </div>
                     </div>
                 </div>

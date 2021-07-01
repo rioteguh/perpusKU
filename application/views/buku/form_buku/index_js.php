@@ -40,4 +40,14 @@
         $('#modal_form').modal('show'); // show bootstrap modal
     }
 
+    function delete_buku(id)
+    {
+        alert("Delete Buku "+id);
+    }
+
+    function edit_buku(id)
+    {
+        alert("Edit Buku "+id);
+    }
+
 </script>

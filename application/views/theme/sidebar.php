@@ -65,10 +65,10 @@
                         </a>
                         <ul class="ml-menu">
                             <li class="<?=$b[2];?>">
-                                <a href="../pages/ui/alerts.html">Pengembalian Buku</a>
+                                <a href="#">Pengembalian Buku</a>
                             </li>
                             <li class="<?=$b[3];?>">
-                                <a href="../pages/ui/animations.html">Aktifitas</a>
+                                <a href="<?=base_url();?>aktivitas">Aktifitas</a>
                             </li>
                         </ul>
                     </li>

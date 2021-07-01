@@ -34,4 +34,9 @@
         $('.js-basic-example').DataTable().ajax.reload(); //reload datatable ajax 
         $('#form')[0].reset(); // reset form on modals
     }
+
+    function tambah_data()
+    {
+        $('#modal_form').modal('show');
+    }
 </script>
